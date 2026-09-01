@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductCard  from "./components/ProductCard";
 import Cart from "./components/Cart";
 const products = [
@@ -28,7 +28,14 @@ const products = [
    },
 ]
 function App() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem('shopping-cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem('shopping-cart', JSON.stringify(cart));
+  }, [cart]);
+
   const [search, setSearch] = useState('');
 
   const filteredProducts = products.filter(product => product.name.toLowerCase().includes(search.toLowerCase()) || product.category.toLowerCase().includes(search.toLowerCase()))
@@ -72,11 +79,28 @@ function App() {
       alignItems: 'start'
      }}>
       <div>
-        <h1 style={{  marginBottom: '30px' }}>Shopping Cart</h1>
+        <h1 style={{ marginBottom: '30px' }}>Shopping Cart</h1>
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '10px 16px',
+            marginBottom: '25px',
+            borderRadius: '8px',
+            border: '1px solid #444',
+            background: '#0d1117',
+            color: 'white',
+            fontSize: '16px',
+            outline: 'none'
+          }}
+        />
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px,1fr))', gap: '20px' }}>
           
-          {products.map(product => (
+          {filteredProducts.map(product => (
             <ProductCard
             key={product.id}
             product={product}
@@ -84,8 +108,14 @@ function App() {
             />
           ))}
         </div>
+        {filteredProducts.length === 0 && (
+          <p style={{ color: '#888', textAlign: 'center', marginTop: '40px' }}>
+            No products found.
+          </p>
+
+        )}
       </div>
-      
+
       <div style={{ position: 'sticky', top: '20px' }}>
         <Cart
           cart={cart}
