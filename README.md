@@ -1,16 +1,53 @@
-# React + Vite
+# React Shopping Cart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern shopping cart application built with React + Vite.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+https://agmyathtun.github.io/react-shopping-cart/
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Product listing with images
+- Real-time search filter
+- Add to cart with quantity control (+ / −)
+- Remove items and clear cart
+- Sticky cart sidebar
+- Checkout functionality
+- Cart data saved in localStorage (persists after refresh)
+- Fully responsive design
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 18
+- Vite
+- useState + useEffect
+- LocalStorage
+- Component composition (props)
+- GitHub Pages deployment
+
+## Screenshots
+
+### Product List + Search
+
+![Product List](screenshots/product-list.png)
+
+### Cart Sidebar
+
+![Cart](screenshots/cart.png)
+
+### Checkout
+
+![Checkout](screenshots/checkout.png)
+
+## How to Run Locally
+
+```bash
+git clone https://github.com/Agmyathtun/react-shopping-cart.git
+cd react-shopping-cart
+npm install
+npm run dev
+
+## License
+MIT
+```
